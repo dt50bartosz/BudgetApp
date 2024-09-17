@@ -1,0 +1,32 @@
+CREATE TABLE users (
+    idUser INT(11) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    surname VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    username VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    password VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    PRIMARY KEY (idUser),
+);
+
+CREATE TABLE income (
+    idTransaction INT(11) NOT NULL AUTO_INCREMENT,
+    idUser INT(11) NOT NULL,
+    transaction_date DATE NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    category VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    comment TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+    method VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+    PRIMARY KEY (idTransaction),
+    FOREIGN KEY (idUser) REFERENCES Users(idUser)
+);
+
+CREATE TABLE expenses (
+    idTransaction INT(11) NOT NULL AUTO_INCREMENT,
+    idUser INT(11) NOT NULL,
+    transaction_date DATE NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    category VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    comment TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+    method VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+    PRIMARY KEY (idTransaction),
+    FOREIGN KEY (idUser) REFERENCES Users(idUser)
+);
